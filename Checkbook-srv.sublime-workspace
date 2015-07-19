@@ -20,10 +20,18 @@
 			}
 		},
 		{
-			"file": "models/user.seq.js",
+			"file": ".gitignore",
 			"settings":
 			{
-				"buffer_size": 4416,
+				"buffer_size": 137,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "README.md",
+			"settings":
+			{
+				"buffer_size": 915,
 				"line_ending": "Unix"
 			}
 		}
@@ -35,12 +43,16 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 145.0,
-		"last_filter": "Package Control: ins",
+		"height": 457.0,
+		"last_filter": "mar",
 		"selected_items":
 		[
 			[
-				"Package Control: ins",
+				"mar",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"Package Control: in",
 				"Package Control: Install Package"
 			],
 			[
@@ -48,7 +60,23 @@
 				"Package Control: Discover Packages"
 			],
 			[
-				"Package Control: in",
+				"git pus",
+				"Git: Push"
+			],
+			[
+				"git r",
+				"Git: Remote"
+			],
+			[
+				"git p",
+				"Git: Push"
+			],
+			[
+				"git",
+				"Git: Init"
+			],
+			[
+				"Package Control: ins",
 				"Package Control: Install Package"
 			],
 			[
@@ -72,7 +100,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 549.0
+		"width": 703.0
 	},
 	"console":
 	{
@@ -94,10 +122,14 @@
 	"expanded_folders":
 	[
 		"/home/chris/Programmieren/workspace/Checkbook-srv",
+		"/home/chris/Programmieren/workspace/Checkbook-srv/.vagrant/machines",
+		"/home/chris/Programmieren/workspace/Checkbook-srv/.vagrant/machines/default",
+		"/home/chris/Programmieren/workspace/Checkbook-srv/.vagrant/machines/default/virtualbox",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/bin",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/config",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/models",
-		"/home/chris/Programmieren/workspace/Checkbook-srv/res",
+		"/home/chris/Programmieren/workspace/Checkbook-srv/res/cert",
+		"/home/chris/Programmieren/workspace/Checkbook-srv/res/mail",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/routes",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/test",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/test/auth",
@@ -105,6 +137,9 @@
 	],
 	"file_history":
 	[
+		"/home/chris/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/chris/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/chris/Programmieren/workspace/Checkbook-srv/.gitignore",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/test/models/user.spec.js",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/package.json",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/models/user.seq.js",
@@ -119,8 +154,6 @@
 		"/home/chris/Programmieren/workspace/Checkbook-srv/bin/init.sql",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/models/category.seq.js",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/models/entry.seq.js",
-		"/home/chris/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
-		"/home/chris/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/routes/month-category-entries.js",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/test/routes/month-category-entries.spec.js",
 		"/home/chris/Programmieren/workspace/Checkbook-srv/routes/month-categories.js",
@@ -137,7 +170,7 @@
 	],
 	"find":
 	{
-		"height": 31.0
+		"height": 41.0
 	},
 	"find_in_files":
 	{
@@ -178,7 +211,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -194,8 +227,8 @@
 						"selection":
 						[
 							[
-								739,
-								739
+								522,
+								522
 							]
 						],
 						"settings":
@@ -208,36 +241,65 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "models/user.seq.js",
-					"semi_transient": true,
+					"file": ".gitignore",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4416,
+						"buffer_size": 137,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								6,
+								6
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
-						"translation.x": -0.0,
-						"translation.y": 1173.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 915,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								465,
+								465
+							]
+						],
+						"settings":
+						{
+							"parser": "github",
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"target": "disk"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -277,6 +339,14 @@
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.git-init":
+	{
+		"height": 148.0
+	},
+	"output.git-push":
+	{
+		"height": 148.0
 	},
 	"pinned_build_system": "",
 	"project": "Checkbook-srv.sublime-project",
