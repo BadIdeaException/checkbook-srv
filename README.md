@@ -14,6 +14,12 @@ This is a complete rewrite of the backend of the Checkbook project. The goals of
 
 ## Usage
 
-The project is all set up and configured to be run in a vagrant environment. All you have to do is run ``vagrant up``, then lean back while the environment is set up. Or better yet, go and grab a coffee, because it might take a few minutes.
+The project is all set up and configured to be run in a Vagrant environment. All you have to do is run ``vagrant up``, then lean back while the environment is set up. Or better yet, go and grab a coffee, because it might take a few minutes.
 
 But before you do, be sure to fill out the ``database.json`` and ``mail.json`` files in the config directory. Examples are provided, you just need to rename them.
+
+The server (including the database server) will automatically start when the Vagrant virtual machine is started.
+
+## Tests
+
+From within the Vagrant virtual machine, run ``npm test``. It will automatically start up a docker container and run the tests against it.
