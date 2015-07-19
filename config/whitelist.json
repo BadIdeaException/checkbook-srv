@@ -1,0 +1,26 @@
+{
+	"test": [ "/**" ],
+	"development": [ 		 
+		 "/", 
+		 "/**.html",	               
+	     "/login", "/login/**",
+	     "/register", "/register/*", 
+	     "/oauth/token",
+	     "/vendor/**",
+	     "/stylesheets/**",
+	     "/js/**",
+	     "/img/**",
+	     "/fonts/**" ],
+	"production": [
+		 "/", 
+		 "/*.html", "/**/*.html",	               
+	     "/login", "/login/**",
+	     "/register", "/register/*", 
+	     "/oauth/token",
+	     "/vendor/**",
+	     "/stylesheets/**",
+	     "/js/**",
+	     "/img/**",
+	     "/fonts/**"
+	]
+}

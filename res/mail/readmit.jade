@@ -1,0 +1,25 @@
+html
+	head
+		title Your password on Checkbook
+	body
+		table(width="100%" cellspacing="0" cellpadding="10")
+			tr(valign="middle" style="background-color: #444; vertical-align: middle" height="32")
+				td(align="center" height="32" width="32"): img(src="http://checkbook.dlinkddns.com/logo.jpg" alt="logo" height="32" width="32")
+				td(align="left" valign="middle" style="text-align: left; vertical-align: middle") 
+					h1(valign="middle" style="display: table-cell; vertical-align: middle; color: white"): i Checkbook
+		
+		table(width="768" style="padding: 50px 10px 30px")
+			tr
+				td: h2 Your password on Checkbook 
+			tr
+				td Hello #{username}!
+			tr
+				td So you've forgotten the password for your account on Checkbook, huh? No problem &ndash; it happens to us all the time, too. Just click on this link, and we'll let you choose a new one:
+			tr
+				td(height="20")
+			tr
+				td: a(href="#{link}") Reset my password
+				
+		table(style="padding: 20px 10px 10px")
+			tr
+				td: small: i For security reasons, link is valid for one hour only. This is an auto-generated email. Please do not reply.

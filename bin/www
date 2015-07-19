@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+// Assume production environment if nothing specified
+process.env.NODE_ENV = process.env.NODE_ENV || 'production';
+
+var debug = require('debug')('Checkbook-web-3');
+var app = require('../app');
+var http = require('http');
+var https = require('https');
+var fs = require('fs');
+var path = require('path');
+
+app.set('port', process.env.PORT || 8080);
+
+http
+	.createServer(app)
+	.listen(8080);
+debug('HTTP server listening on port 8080');
+
+https
+	.createServer({
+		key: fs.readFileSync(path.join(__dirname,'../res/cert/checkbook-server-key.pem')),
+		cert: fs.readFileSync(path.join(__dirname,'../res/cert/checkbook-server-cert.pem'))
+	}, app)
+	.listen(8443);
+debug('HTTPS server listening on port 8443');
+//var server = app.listen(app.get('port'), function() {
+//  debug('Express server listening on port ' + server.address().port);
+//});

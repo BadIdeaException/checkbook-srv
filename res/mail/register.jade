@@ -1,0 +1,25 @@
+html
+	head
+		title Please confirm your registration on Checkbook
+	body
+		table(width="100%" cellspacing="0" cellpadding="10")
+			tr(valign="middle" style="background-color: #444; vertical-align: middle" height="32")
+				td(align="center" height="32" width="32"): img(src="http://checkbook.dlinkddns.com/logo.jpg" alt="logo" height="32" width="32")
+				td(align="left" valign="middle" style="text-align: left; vertical-align: middle") 
+					h1(valign="middle" style="display: table-cell; vertical-align: middle; color: white"): i Checkbook
+		
+		table(width="768" style="padding: 50px 10px 30px")
+			tr
+				td: h2 Please confirm your registration on Checkbook 
+			tr
+				td Hello #{username}!
+			tr
+				td Your account on Checkbook has been created and is ready to be confirmed. All you need to do is follow this link:
+			tr
+				td(height="20")
+			tr
+				td: a(href="#{link}") Activate my account
+				
+		table(style="padding: 20px 10px 10px")
+			tr
+				td: small: i For security reasons, link is valid for one hour only. This is an auto-generated email. Please do not reply.

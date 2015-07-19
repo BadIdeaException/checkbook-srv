@@ -1,0 +1,19 @@
+srv:
+  build: .
+  hostname: srv
+  ports: 
+  - "8080:8080"
+  - "8443:8443"
+  links:
+  - postgres
+  volumes:
+  - ../Checkbook-web:/www
+  - /home/checkbook-srv:/srv
+
+postgres:
+  image: postgres:9.4
+  hostname: postgres
+  ports:
+  - "5432:5432"
+  volumes:
+  - /home/checkbook-data:/var/lib/postgresql/data

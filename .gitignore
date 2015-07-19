@@ -1,0 +1,8 @@
+/node_modules/
+/.vagrant/
+/config/database.json
+/config/mail.json
+/.project
+/.tern-project
+/Checkbook-srv.sublime-project
+/res/cert/*.pem

@@ -1,0 +1,83 @@
+#!/usr/bin/env node
+// This script sets up the databases in accordance with the config/database.json file.
+// For each environment defined there, it sets up the database and user/password defined
+// in that environment.
+// The default database server (hostname and port) are read from the production environment
+// of the database.json file.
+// Also, any of the values can be overridden using command line arguments as follows:
+// -h: host (default is postgres)
+// -p: port (default is 5432)
+// -u: user (default is postgres)
+// -P: password (default is no password)
+var path = require('path');
+var pg = require('pg');
+var fs = require('fs');
+var async = require('async');
+
+// Split additional commands passed to the script into a hash of
+// { option: value }. For example if the script is called
+// with init -p 5432 then the result will contain a mapping from
+// p (without the hyphen!) to 5432
+function processArguments(argArray) {
+	var args = {};
+	argArray.slice(2).forEach(function(arg, index, argArray) {
+		if (index % 2 === 1) {
+			args[argArray[index-1].substr(1)] = arg;
+		}
+	});
+	return args;
+};
+
+var args = processArguments(process.argv);
+var dbconfig = {
+	user: args['u'] || 'postgres', 
+	password: args['P'] || undefined,
+	host: require('../config/database.json')['production'].host || args['h'] || 'postgres',
+	port: require('../config/database.json')['production'].port || args['p'] || 5432,
+	database: 'postgres',
+}
+
+var toCreate = require('../config/database.json');
+
+console.log('Connecting to ' + dbconfig.host + ':' + dbconfig.port + ' as user ' + dbconfig.user);
+pg.connect(dbconfig, function(err, client, done) {	
+	var sql = fs.readFileSync(path.join(__dirname, 'init.sql'), { encoding: 'utf8' }); // set encoding to force result to string instead of buffer
+	async.series(Object.keys(toCreate).map(function(environment) {
+		return function(callback) {
+			console.log('Initializing environment ' + environment);
+			console.log('Creating database ' + toCreate[environment].database);
+			client.query('CREATE DATABASE "' + toCreate[environment].database + '";', function(err) {
+				if (err && err.code === '42P04') 
+					console.warn('Warning: Database ' + toCreate[environment].database + ' already exists'); // 42P04: duplicate database
+				else if (err) console.error(err.toString());
+
+				console.log('Creating role ' + toCreate[environment].username);
+				client.query('CREATE USER "' + toCreate[environment].username + '" WITH PASSWORD \'' + toCreate[environment].password + '\';', function(err) {
+					if (err && err.code === '42710') 
+						console.warn('Warning: Role ' + toCreate[environment].username + ' already exists'); // 42710: duplicate objects
+					else if (err) console.error(err.toString());
+
+					console.log('Setting up database ' + toCreate[environment].database);		
+					toCreate[environment].user = toCreate[environment].username; // pg expects the field to be called 'user', not 'username'
+					console.log('Connecting to database ' + toCreate[environment].database + ' on ' + toCreate[environment].host + ':' + toCreate[environment].port + ' as user ' + toCreate[environment].user);
+					pg.connect(toCreate[environment], function(err, client, done) {
+						if (err) console.error(err.toString());
+
+						var sql = fs.readFileSync(path.join(__dirname, 'init.sql'), { encoding: 'utf8' });
+						client.query(sql, function(err) {
+							if (err) console.error(err.toString());
+							done();
+							console.log('Finished environment ' + environment + '\n');
+
+							return callback(null);
+						});
+					});
+				});
+			});
+		};
+	}), function finish() {
+		console.log('Finished setting up all environments');
+		done();
+		pg.end();
+	});
+});
