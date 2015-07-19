@@ -1,0 +1,10 @@
+{	
+	"host": "the host name of your mail server",
+	"port": 465,
+	"secureConnection": true,
+	"name": "Checkbook web mailer",
+	"auth": { 
+		"user": "the user name with which to log into the mail server", 
+		"pass": "the password for the login" 
+	}
+}

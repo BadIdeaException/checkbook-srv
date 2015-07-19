@@ -1,0 +1,26 @@
+{
+	"development": {
+		"username": "the username to use in the development environment",
+		"password": "the password for the development environment",
+		"database": "the database to use in the development environment",
+		"host": "postgres",
+		"dialect": "postgres",
+		"logging": false    	
+	},
+	"test": {
+		"username": "the username to use in the test environment",
+		"password": "the password for the test environment",
+		"database": "the database to use in the test environment",
+		"host": "postgres",
+		"dialect": "postgres",
+		"logging": false
+	},
+	"production": {
+		"username": "the username to use in the production environment",
+		"password": "the password for the production environment",
+		"database": "the database to use in the production environment",
+		"host": "postgres",
+		"dialect": "postgres",
+		"logging": false
+	}
+}
