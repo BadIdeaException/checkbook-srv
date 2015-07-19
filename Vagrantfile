@@ -18,14 +18,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Share project folder as /home/checkbook-srv
   config.vm.synced_folder ".", "/home/checkbook-srv"
 
-  # Workaround for the "stdin is not a tty" bug.
-  # See https://github.com/mitchellh/vagrant/issues/1673 
-  # and http://foo-o-rama.com/vagrant--stdin-is-not-a-tty--fix.html
-  #config.vm.provision "shell" do |shell|
-  #  shell.privileged = false
-  #  shell.name = "Workaround for stdin is not a tty bug"
-  #  shell.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
-  #end
+  # Make ports 8080 and 8443 of the vm available
+  # This will allow to access the server from the host browser
+  config.vm.network "forwarded_port", guest: 8080, host: 8080
+  config.vm.network "forwarded_port", guest: 8443, host: 8443
 
   # Install nodejs
   # Even though the server runs virtualized in a docker container, 
@@ -35,19 +31,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     shell.name = "Install node.js"
     shell.inline = "curl -sL https://deb.nodesource.com/setup | bash - && apt-get install -y nodejs"
   end
-
-  # Install docker and docker-compose
-  # Add vagrant user to docker group to enable running docker
-  # without needing root privileges
-  #config.vm.provision "shell" do |shell|
-  #  shell.name = "Install docker and docker-compose"
-  #  shell.inline = "<<END
-  #    wget -qO- https://get.docker.com/ | bash 
-  #    curl -L https://github.com/docker/compose/releases/download/1.3.1/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose 
-  #    chmod +x /usr/local/bin/docker-compose 
-  #    usermod -aG docker vagrant
-#END"
-  #end
 
   # Pull and start dockerized postgres
   config.vm.provision "docker" do |docker|

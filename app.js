@@ -31,7 +31,7 @@ if (app.get('env') === 'production') {
 }
 // Restrict access to non-whitelisted routes
 app.use(restrict(whitelist));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('/www'));
 
 app.use('/', routes);
 
