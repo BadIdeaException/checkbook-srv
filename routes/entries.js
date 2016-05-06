@@ -31,21 +31,6 @@ router.route('/')
 		});
 	});
 
-// function getWhere(req) {
-// 	// Need an instance to extract the month and year
-// 	// Not the prettiest way to do this, for sure.
-// 	// I should really add static methods on the Month model
-// 	var month = Month.build({ id: req.params.month, value:0 });
-// 	return models.Sequelize.and(
-// 		{ id: req.params.id },
-// 		{ category: req.params.category },
-// 		{ datetime: {
-// 			$gte: new Date(month.getYear(), month.getMonth()),
-// 			$lt: new Date(month.getYear(), month.getMonth() + 1)
-// 		}
-// 	})
-// };
-
 router.route('/:id')
 	.get(function(req,res) {
 		return Entry.findById(req.params.id).then(function(entry) {
