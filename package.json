@@ -1,6 +1,6 @@
 {
-  "name": "Checkbook-web-3",
-  "version": "0.0.0",
+  "name": "checkbook-srv",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "start": "./bin/www",
