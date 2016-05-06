@@ -15,8 +15,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Disable default share of current folder as /vagrant
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
-  # Share project folder as /home/checkbook-srv
+  # Share project folder as /home/checkbook-web and make this the default folder for new bash shells
+  # (This will also make it the working directory when doing vagrant ssh)
   config.vm.synced_folder ".", "/home/checkbook-srv"
+  config.vm.provision "shell", inline: "echo -e '\n# Make /home/checkbook-srv the default folder\ncd /home/checkbook-srv' >> /home/vagrant/.bashrc", privileged: false
 
   # Make ports 8080 and 8443 of the vm available
   # This will allow to access the server from the host browser
