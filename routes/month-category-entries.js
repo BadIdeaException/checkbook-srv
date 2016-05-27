@@ -28,11 +28,11 @@ router.route('/:month/categories/:category/entries')
 			if (entry.category !== Number(req.params.category))
 				return res.status(400).send('Entry category does not match the path category');
 
-			return entry.save().then(function() {
+			return entry.save().then(function(entry) {
 				return res
 					.status(201)
 					.location(router.mountpoint + '/' + req.params.month + '/categories/' + req.params.category + '/entries/' + entry.id)
-					.end();
+					.json(entry);
 			});
 		});
 	});
@@ -75,11 +75,11 @@ router.route('/:month/categories/:category/entries/:id')
 			return entry.validate().then(function(errors) {
 				if (errors) return res.status(400).json(errors);
 
-				return entry.save().then(function() {
+				return entry.save().then(function(entry) {
 					return res
-						.status(204)
+						.status(200)
 						.location(router.mountpoint + '/' + Month.getId(entry.datetime) + '/categories/' + entry.category + '/entries/' + entry.id)
-						.end();
+						.json(entry);
 				});
 			});
 		});

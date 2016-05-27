@@ -148,6 +148,15 @@ describe('/entries', function() {
 				.to.eventually.exist;
 		});
 
+		it('should return the entry', function() {
+			expect(res.body).to.exist.and.not.be.empty;
+			// Make a copy of newEntry and set the id field on it
+			var created = {}; 			
+			for (var key in newEntry) created[key] = newEntry[key];
+			created.id = Number(res.get('location').match(/.*\/entries\/(\d+)/i)[1]);
+			expect(normalizeDate(res.body)).to.deep.equal(normalizeDate(created));
+		});
+
 		it('should have status 400 if body is not a valid entry', function() {
 			return expect(chai
 				.request(app)
@@ -180,8 +189,8 @@ describe('/entries', function() {
 				.then(function(r) { res = r; });
 		});
 
-		it('should have status 204', function() {
-			expect(res).to.have.status(204);
+		it('should have status 200', function() {
+			expect(res).to.have.status(200);
 		});
 
 		it('should set the location header', function() {
@@ -191,6 +200,11 @@ describe('/entries', function() {
 
 		it('should update the entry', function() {
 			return expect(Entry.findById(changed.id).then(function (entry) { return entry.get(); })).to.eventually.deep.equal(changed);
+		});
+
+		it('should return the entry', function() {
+			expect(res.body).to.exist.and.not.be.empty;
+			expect(normalizeDate(res.body)).to.deep.equal(normalizeDate(changed));
 		});
 
 		it('should have status 404 for a non-existent entry', function() {

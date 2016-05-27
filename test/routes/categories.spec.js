@@ -112,6 +112,13 @@ describe('/categories', function() {
 		it('should create a category', function() {
 			return expect(Category.findAll()).to.eventually.have.length(1);
 		});
+
+		it('should return the category', function() {
+			var created = {};
+			for (var key in category) created[key] = category[key];
+			created.id = Number(res.get('location').match(/categories\/(\d+)/i)[1]);
+			expect(res.body).to.deep.equal(created);
+		});
 	});
 
 	describe('PUT /categories/:id', function() {
@@ -140,8 +147,8 @@ describe('/categories', function() {
 
 		after(wipe);
 
-		it('should have status 204', function() {
-			expect(res).to.have.status(204);
+		it('should have status 200', function() {
+			expect(res).to.have.status(200);
 		});
 
 		it('should set the location header', function() {
@@ -154,6 +161,10 @@ describe('/categories', function() {
 				.then(function(category) { return category.get(); }); // Cut to values only or the deep equal will fail
 
 			return expect(p).to.eventually.deep.equal(changed);
+		});
+
+		it('should return the category', function() {
+			expect(res.body).to.deep.equal(changed);
 		});
 
 		it('should have status 404 on a nonexistent category', function() {

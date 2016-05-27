@@ -19,7 +19,7 @@ router.route('/')
 			res
 				.status(201)
 				.location(router.mountpoint + '/' + category.id)
-				.end();
+				.json(category);
 		});
 	});
 
@@ -35,11 +35,11 @@ router.route('/:id')
 			if (!category) return res.status(404).end();
 			for (var key in req.body) {
 				category[key] = req.body[key];
-				return category.save().then(function() {
+				return category.save().then(function(category) {
 					res
-						.status(204)
+						.status(200)
 						.location(router.mountpoint + '/' + category.id)
-						.end();
+						.json(category);
 				});
 			}
 		});

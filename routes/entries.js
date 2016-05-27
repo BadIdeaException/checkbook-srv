@@ -22,11 +22,11 @@ router.route('/')
 		return entry.validate().then(function(errors) {
 			if (errors) return res.status(400).json(errors); // Validation failed
 
-			return entry.save().then(function() {
+			return entry.save().then(function(entry) {
 				return res
 					.status(201)
 					.location('/months/' + Month.getId(entry.datetime) + '/categories/' + entry.category + '/entries/' + entry.id)
-					.end();
+					.json(entry);
 			});
 		});
 	});
@@ -54,11 +54,11 @@ router.route('/:id')
 			return entry.validate().then(function(errors) {
 				if (errors) return res.status(400).json(errors);
 
-				return entry.save().then(function() {
+				return entry.save().then(function(entry) {
 					return res
-						.status(204)
+						.status(200)
 						.location('/months/' + Month.getId(entry.datetime) + '/categories/' + entry.category + '/entries/' + entry.id)
-						.end();
+						.json(entry);
 				});
 			});
 		});
